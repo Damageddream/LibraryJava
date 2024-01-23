@@ -6,10 +6,40 @@ public class Team {
     private String teamName;
     private Hero[] team;
     private int teamCurrentNr = 0;
+    private double teamAttStr;
+    private double teamDefStr;
+    private double teamHealt;
+
+    public double getTeamAttStr() {
+        return teamAttStr;
+    }
+
+    public void setTeamAttStr(double teamAttStr) {
+        this.teamAttStr = teamAttStr;
+    }
+
+    public double getTeamDefStr() {
+        return teamDefStr;
+    }
+
+    public void setTeamDefStr(double teamDefStr) {
+        this.teamDefStr = teamDefStr;
+    }
+
+    public double getTeamHealt() {
+        return teamHealt;
+    }
+
+    public void setTeamHealt(double teamHealt) {
+        this.teamHealt = teamHealt;
+    }
 
     public Team(String teamName) {
         this.teamName = teamName;
         this.team = new Hero[TEAM_NUMBER];
+        this.teamAttStr = 0;
+        this.teamDefStr = 0;
+        this.teamHealt  =0;
     }
 
     public Hero[] getTeam() {
@@ -37,6 +67,9 @@ public class Team {
     }
     public void addTeamate(Hero hero){
         team[teamCurrentNr] = hero;
+        teamHealt += hero.getHealt();
+        teamAttStr += hero.getAttackStr();
+        teamDefStr += hero.getDefenseStr();
         teamCurrentNr++;
     }
 }
