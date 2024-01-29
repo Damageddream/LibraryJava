@@ -11,20 +11,40 @@ public class CountLines {
 
     public Client highestCap(Client[] clients){
         Client clientIt = clients[0];
-        for (Client client : clients) {
-            if(client.getSalary() > clientIt.getSalary()){
-                clientIt = client;
+        for (int i = 0; i < clients.length-1; i++) {
+            if(clients[i].getSalary() > clientIt.getSalary()){
+                clientIt = clients[i];
             }
         }
+//        for (Client client : clients) {
+//            if(client.getSalary() > clientIt.getSalary()){
+//                clientIt = client;
+//            }
+
         return clientIt;
 
     }
     public void filterCountry(String country, Client[] clients){
-        for (Client client : clients) {
-            if(client.getCountry().equals(country)){
-                System.out.println(client.toString());
+//        for (Client client : clients) {
+//            if(client.getCountry().equals(country)){
+//                System.out.println(client.toString());
+//            }
+//        }
+        double avarageSell = 0;
+        int countyPeople = 0;
+        for (int i = 0; i < clients.length-1; i++) {
+            if(clients[i].getCountry().equals(country)){
+                System.out.println(clients[i].toString());
+                avarageSell += clients[i].getSalary();
+                countyPeople++;
             }
         }
+        if(countyPeople == 0){
+            System.out.println("Brak klientów");
+        } else {
+            System.out.println("Średnia sprzedaż to "+(avarageSell/countyPeople));
+        }
+
     }
 
     public int count() {

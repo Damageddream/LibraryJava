@@ -20,6 +20,7 @@ public class ReadCsv {
                 FileReader fileReader = new FileReader(fileName);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
+            bufferedReader.readLine();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
 
