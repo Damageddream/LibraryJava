@@ -2,8 +2,14 @@ package pl.javastart.library.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Publication implements Serializable {
+public abstract class Publication implements Serializable, Comparable<Publication> {
     private String title;
+
+    @Override
+    public int compareTo(Publication p) {
+        return title.compareToIgnoreCase(p.title);
+    }
+
     private String publisher;
     private int year;
     public abstract String toCsv();
@@ -14,7 +20,7 @@ public abstract class Publication implements Serializable {
         this.year = year;
     }
 
-    int getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -22,7 +28,7 @@ public abstract class Publication implements Serializable {
         this.year = year;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 

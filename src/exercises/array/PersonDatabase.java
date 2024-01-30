@@ -16,6 +16,7 @@ public class PersonDatabase {
         for (int i = 0; i < persons.length; i++) {
             if(persons[i] == null){
                 persons[i] = p;
+                fullArray = false;
             }
             if(persons[i] == null){
                 fullArray = false;
@@ -23,21 +24,23 @@ public class PersonDatabase {
         }
         if(fullArray){
             Person[] secondArr = new Person[persons.length*2];
-            System.arraycopy(persons,0,secondArr,persons.length-1, persons.length);
-
+            System.arraycopy(persons,0,secondArr,0, persons.length);
+            persons = secondArr;
+            persons[persons.length-1] = p;
         }
+
     }
     public void removePerson(Person p){
         if(p == null){
             throw new NullPointerException("Należy podać osobę");
         }
+        boolean personDel = false;
         for (int i = 0; i < persons.length; i++) {
-            boolean personDel = false;
             if(persons[i].equals(p) && !personDel){
                 persons[i] = null;
                 personDel = true;
             }
-            if(personDel && i<persons.length-2){
+            if(personDel && i<persons.length-1){
                 persons[i] = persons[i+1];
             }
             if(personDel && i==persons.length-1){

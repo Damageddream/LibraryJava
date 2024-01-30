@@ -17,6 +17,11 @@ public class TestApp {
         for (Person person1 : personDatabase.persons) {
             System.out.println(person1);
         }
+        personDatabase.removePerson(person2);
+        System.out.println("...............");
+        for (Person person1 : personDatabase.persons) {
+            System.out.println(person1);
+        }
 
     }
 
