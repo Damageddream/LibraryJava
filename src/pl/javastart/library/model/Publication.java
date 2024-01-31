@@ -2,7 +2,7 @@ package pl.javastart.library.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Publication implements Serializable, Comparable<Publication> {
+public abstract class Publication implements Serializable, Comparable<Publication>, CsvConvertible {
     private String title;
 
     @Override
@@ -12,7 +12,7 @@ public abstract class Publication implements Serializable, Comparable<Publicatio
 
     private String publisher;
     private int year;
-    public abstract String toCsv();
+
 
     Publication(String title, String publisher, int year) {
         this.title = title;
