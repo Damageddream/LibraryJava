@@ -1,5 +1,7 @@
 package exercises.metreferenec;
 
+import exercises.comapres.Comp;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,29 +15,29 @@ class Company {
 
         System.out.println("Liczba pracowników zatrudnionych na pełen etat: " + fullTimeEmployeesNumber);
         System.out.println("Oto oni:");
-        employees.stream().filter(employee -> employee.getEmployment() == Employment.FULL_TIME)
-                .forEach(e -> System.out.println(e));
+        employees.stream().filter(Company::findFullTime)
+                .forEach(System.out::println);
 
         employeeWithLongestName(employees)
-                .ifPresent(emp -> System.out.println("Pracownik o najdłuższym imieniu i nazwisku to " + emp));
+                .ifPresent(Company::printLongestNameInfo);
     }
 
     private static Optional<String> employeeWithLongestName(List<Employee> employees) {
         return employees.stream()
                 .map(Employee::nameAndLastName)
-                .max((e1, e2) -> Integer.compare(e1.length(), e2.length()));
+                .max((Company::compareByLength));
     }
 
     private static long countEmployeesByEmployment(List<Employee> employees, Employment employment) {
         return employees.stream()
-                .filter(e -> e.getEmployment() == employment)
+                .filter(employment::checkEmployeeEmployment)
                 .count();
     }
 
     private static void addBonusToFullTimeEmployees(List<Employee> employees) {
         employees.stream()
-                .filter(employee -> employee.getEmployment() == Employment.FULL_TIME)
-                .forEach(employee -> employee.setSalary(employee.getSalary() * 1.1));
+                .filter(Company::findFullTime)
+                .forEach(Employee::giveBonus);
     }
 
     private static List<Employee> createEmployees() {
@@ -49,4 +51,17 @@ class Company {
                 new Employee("Adam", "Marchwicki", 300, Employment.CONTRACT)
         );
     }
+    private static int compareByLength(String a, String b){
+        return Integer.compare(a.length(), b.length());
+    }
+    private static boolean findFullTime(Employee e){
+        if(e.getEmployment() == Employment.FULL_TIME){
+            return true;
+        }
+        return false;
+    }
+    private static void printLongestNameInfo(String e){
+        System.out.println("Pracownik o najdłuższym imieniu i nazwisku to "+e);
+    }
+
 }

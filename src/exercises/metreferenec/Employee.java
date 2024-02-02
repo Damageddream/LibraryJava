@@ -48,6 +48,10 @@ class Employee {
     public void setEmployment(Employment employment) {
         this.employment = employment;
     }
+    public void giveBonus(){
+        salary *= 1.1;
+    }
+
 
     @Override
     public String toString() {
@@ -58,4 +62,7 @@ class Employee {
                 ", employment=" + employment +
                 '}';
     }
+
+
+
 }
