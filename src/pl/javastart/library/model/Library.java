@@ -12,6 +12,10 @@ public class Library implements Serializable {
     //dodane
     private Map<String, LibraryUser> users = new HashMap<>();
 
+    public Optional<Publication> findPublicationByTitle(String title) {
+        return Optional.ofNullable(publications.get(title));
+    }
+
     //zmieniony typ zwracany
     public Map<String, Publication> getPublications() {
         return publications;
