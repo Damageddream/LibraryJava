@@ -1,10 +1,19 @@
 package exercises.finalrep;
 
-import java.util.Objects;
-
 public class Person {
     private String name;
-    private int age;
+    private String lastName;
+    private double salary;
+
+    @Override
+    public String
+    toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
 
     public String getName() {
         return name;
@@ -14,37 +23,25 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name);
+    public double getSalary() {
+        return salary;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
-
-    public Person(String name, int age) {
+    public Person(String name, String lastName, double salary) {
         this.name = name;
-        this.age = age;
+        this.lastName = lastName;
+        this.salary = salary;
     }
 }
